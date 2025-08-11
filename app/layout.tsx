@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
+import { UserButton } from '@clerk/nextjs';
 
-export const metadata: Metadata = {
-  title: "PocketSub",
-  description: "Manage your subscriptions",
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
+  title: 'PocketSub',
+  description: 'Manage your subscriptions',
 };
 
 export default function RootLayout({
@@ -12,8 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-gray-50">{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang='en' className='h-full bg-gray-50'>
+        <body className={`${inter.className} flex h-full flex-col`}>
+          {/* <Navbar /> */}
+
+          <main className='flex-1'>{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
