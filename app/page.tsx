@@ -1,3 +1,7 @@
 export default function Home() {
-  return <main>Hello from Pocketsub</main>;
+  return (
+    <main className="text-3xl font-bold underline text-blue-600 p-4">
+      Hello from Pocketsub
+    </main>
+  );
 }
