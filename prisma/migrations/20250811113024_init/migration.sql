@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "public"."Subscription" ALTER COLUMN "start_date" SET DATA TYPE DATE,
+ALTER COLUMN "end_date" SET DATA TYPE DATE,
+ALTER COLUMN "billing_period" SET DEFAULT 'MONTHLY',
+ALTER COLUMN "next_payment_date" SET DATA TYPE DATE,
+ALTER COLUMN "status" SET DEFAULT 'ACTIVE';
