@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     const wh = new Webhook(webhookSecret);
-    let evt: any = null;
+    let evt: unknown = null;
 
     try {
       evt = wh.verify(
@@ -42,10 +42,18 @@ export async function POST(request: Request) {
     }
 
     // Handle the webhook event
-    const eventType = evt.type;
+    const eventType = (evt as { type: string }).type;
     
     if (eventType === 'user.created' || eventType === 'user.updated') {
-      const { id, email_addresses, username, first_name, last_name } = evt.data;
+      const { id, email_addresses, username, first_name, last_name } = (evt as { 
+        data: {
+          id: string;
+          email_addresses: Array<{ email_address: string }>;
+          username: string;
+          first_name: string;
+          last_name: string;
+        }
+      }).data;
       const email = email_addresses?.[0]?.email_address;
       const name = [first_name, last_name].filter(Boolean).join(' ') || username;
 

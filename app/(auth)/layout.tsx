@@ -1,8 +1,5 @@
 import Link from 'next/dist/client/link';
 import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
